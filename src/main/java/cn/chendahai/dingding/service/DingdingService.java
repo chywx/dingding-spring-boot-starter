@@ -14,6 +14,6 @@ public class DingdingService {
 
     public String send(String msg){
         DingDingSendMsg.sendText(msg,token,null);
-        return "发送成功";
+        return "send success";
     }
 }

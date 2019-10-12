@@ -6,7 +6,6 @@ import cn.chendahai.dingding.utils.DingDingSendMsg;
  * 功能描述
  *
  * @author chy
- * @date 2019/10/12 0012
  */
 public class MainClient {
     public static void main(String[] args) {
