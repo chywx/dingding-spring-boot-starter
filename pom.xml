@@ -7,6 +7,7 @@
     <artifactId>dingding-spring-boot-starter</artifactId>
     <version>1.0.1</version>
     <name>dingding-spring-boot-starter</name>
+    <url>https://github.com/chywx/dingding-spring-boot-starter</url>
     <description>dingding project for Spring Boot starter</description>
 
     <properties>
@@ -39,14 +40,7 @@
         </dependencies>
     </dependencyManagement>
 
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-        </plugins>
-    </build>
+
 
     <repositories>
         <repository>
@@ -63,6 +57,7 @@
         </repository>
     </repositories>
 
+    <!--  在maven中配置私服地址，主要是用于下载钉钉依赖包  -->
     <pluginRepositories>
         <pluginRepository>
             <id>nexus</id>
@@ -75,5 +70,124 @@
             </snapshots>
         </pluginRepository>
     </pluginRepositories>
+
+
+    <!--  上传到maven中央仓库相关  -->
+    <!--licenses信息-->
+    <licenses>
+        <license>
+            <name>The Apache Software License, Version 2.0</name>
+            <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+            <distribution>repo</distribution>
+        </license>
+    </licenses>
+
+    <!--scm信息-->
+    <scm>
+        <url>http://chendahai.cn</url>
+        <connection>scm:git:https://github.com/chywx/dingding-spring-boot-starter.git</connection>
+        <developerConnection>scm:git:https://github.com/chywx/dingding-spring-boot-starter.git</developerConnection>
+    </scm>
+
+    <!--发布者信息-->
+    <developers>
+        <developer>
+            <name>chenhaiyang</name>
+            <email>chy1559843332@outlook.com</email>
+            <organization>http://chendahai.cn</organization>
+            <organizationUrl>http://chendahai.cn</organizationUrl>
+        </developer>
+    </developers>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+            <!--Compiler-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+            </plugin>
+            <!--source-->
+            <plugin>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>3.0.1</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--javadoc-->
+            <plugin>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>2.10.4</version>
+                <configuration>
+                    <charset>UTF-8</charset>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>attach-javadocs</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!-- gpg plugin,用于签名认证 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-gpg-plugin</artifactId>
+                <version>1.6</version>
+                <executions>
+                    <execution>
+                        <id>sign-artifacts</id>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sign</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <!--staging puglin,用于自动执行发布阶段(免手动)-->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.7</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+            <!-- release plugin,用于发布到release仓库部署插件 -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.2</version>
+            </plugin>
+        </plugins>
+    </build>
+
+    <!--定义snapshots库和releases库的nexus地址-->
+    <distributionManagement>
+        <snapshotRepository>
+            <!--oss需要对应到settings.xml下的service的id-->
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots/</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+    </distributionManagement>
+
+
 
 </project>
