@@ -5,7 +5,7 @@
 
     <groupId>cn.chendahai</groupId>
     <artifactId>dingding-spring-boot-starter</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <name>dingding-spring-boot-starter</name>
     <url>https://github.com/chywx/dingding-spring-boot-starter</url>
     <description>dingding project for Spring Boot starter</description>
@@ -25,6 +25,14 @@
             <artifactId>dingding</artifactId>
             <version>6.2.8</version>
         </dependency>
+
+        <dependency>
+            <artifactId>dingding</artifactId>
+            <groupId>dingding</groupId>
+            <version>1.1.1</version>
+            <scope>system</scope>
+            <systemPath>${pom.basedir}/lib/taobao-sdk-java-auto_1479188381469-20190628.jar</systemPath>
+        </dependency>
     </dependencies>
 
 
@@ -42,34 +50,32 @@
 
 
 
-    <repositories>
-        <repository>
-            <id>nexus</id>
-            <!--地址是nexus中repository（Releases/Snapshots）中对应的地址-->
-            <url>http://nexus.gbank.club/repository/bet/</url>
-            <!--true或者false表示该仓库是否为下载某种类型构件（发布版，快照版）开启。 -->
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
+<!--    <repositories>-->
+<!--        <repository>-->
+<!--            <id>nexus</id>-->
+<!--            <url>http://nexus.gbank.club/repository/bet/</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>true</enabled>-->
+<!--            </snapshots>-->
+<!--        </repository>-->
+<!--    </repositories>-->
 
-    <!--  在maven中配置私服地址，主要是用于下载钉钉依赖包  -->
-    <pluginRepositories>
-        <pluginRepository>
-            <id>nexus</id>
-            <url>http://nexus.gbank.club/repository/bet/</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
+<!--&lt;!&ndash;     可以不需要配置 &ndash;&gt;-->
+<!--    <pluginRepositories>-->
+<!--        <pluginRepository>-->
+<!--            <id>nexus</id>-->
+<!--            <url>http://nexus.gbank.club/repository/bet/</url>-->
+<!--            <releases>-->
+<!--                <enabled>true</enabled>-->
+<!--            </releases>-->
+<!--            <snapshots>-->
+<!--                <enabled>true</enabled>-->
+<!--            </snapshots>-->
+<!--        </pluginRepository>-->
+<!--    </pluginRepositories>-->
 
 
     <!--  上传到maven中央仓库相关  -->
@@ -100,6 +106,15 @@
     </developers>
 
     <build>
+        <resources>
+            <resource>
+                <directory>lib</directory>
+                <targetPath>BOOT-INF/lib/</targetPath>
+                <includes>
+                    <include>**/*.jar</include>
+                </includes>
+            </resource>
+        </resources>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
