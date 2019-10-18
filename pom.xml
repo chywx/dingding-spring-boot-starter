@@ -20,11 +20,11 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>dingding</groupId>
-            <artifactId>dingding</artifactId>
-            <version>6.2.8</version>
-        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>dingding</groupId>-->
+<!--            <artifactId>dingding</artifactId>-->
+<!--            <version>6.2.8</version>-->
+<!--        </dependency>-->
 
         <dependency>
             <artifactId>dingding</artifactId>
