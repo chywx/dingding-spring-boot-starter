@@ -5,7 +5,7 @@
 
     <groupId>cn.chendahai</groupId>
     <artifactId>dingding-spring-boot-starter</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <name>dingding-spring-boot-starter</name>
     <url>https://github.com/chywx/dingding-spring-boot-starter</url>
     <description>dingding project for Spring Boot starter</description>
@@ -20,18 +20,15 @@
             <artifactId>spring-boot-autoconfigure</artifactId>
         </dependency>
 
-<!--        <dependency>-->
-<!--            <groupId>dingding</groupId>-->
-<!--            <artifactId>dingding</artifactId>-->
-<!--            <version>6.2.8</version>-->
-<!--        </dependency>-->
-
         <dependency>
-            <artifactId>dingding</artifactId>
-            <groupId>dingding</groupId>
-            <version>1.1.1</version>
-            <scope>system</scope>
-            <systemPath>${pom.basedir}/lib/taobao-sdk-java-auto_1479188381469-20190628.jar</systemPath>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>4.3.5</version>
+        </dependency>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.58</version>
         </dependency>
     </dependencies>
 
@@ -47,36 +44,6 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
-
-
-
-<!--    <repositories>-->
-<!--        <repository>-->
-<!--            <id>nexus</id>-->
-<!--            <url>http://nexus.gbank.club/repository/bet/</url>-->
-<!--            <releases>-->
-<!--                <enabled>true</enabled>-->
-<!--            </releases>-->
-<!--            <snapshots>-->
-<!--                <enabled>true</enabled>-->
-<!--            </snapshots>-->
-<!--        </repository>-->
-<!--    </repositories>-->
-
-<!--&lt;!&ndash;     可以不需要配置 &ndash;&gt;-->
-<!--    <pluginRepositories>-->
-<!--        <pluginRepository>-->
-<!--            <id>nexus</id>-->
-<!--            <url>http://nexus.gbank.club/repository/bet/</url>-->
-<!--            <releases>-->
-<!--                <enabled>true</enabled>-->
-<!--            </releases>-->
-<!--            <snapshots>-->
-<!--                <enabled>true</enabled>-->
-<!--            </snapshots>-->
-<!--        </pluginRepository>-->
-<!--    </pluginRepositories>-->
-
 
     <!--  上传到maven中央仓库相关  -->
     <!--licenses信息-->

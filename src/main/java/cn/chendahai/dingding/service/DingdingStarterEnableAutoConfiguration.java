@@ -22,7 +22,7 @@ public class DingdingStarterEnableAutoConfiguration {
     @Bean
     @ConditionalOnProperty(prefix = "dingding.service", name = "enable", havingValue = "true")
     DingdingService helloService() {
-        return new DingdingService(dingdingServiceProperties.getToken());
+        return new DingdingService(dingdingServiceProperties.getToken(), dingdingServiceProperties.getPhone());
     }
 
 

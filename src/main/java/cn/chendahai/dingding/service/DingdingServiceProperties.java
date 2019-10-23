@@ -4,6 +4,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties("dingding.service")
 public class DingdingServiceProperties {
+
     private String token;
 
     public String getToken() {
@@ -14,13 +15,13 @@ public class DingdingServiceProperties {
         this.token = token;
     }
 
-    //    private String suffix;
+    private String phone;
 
-//    public String getSuffix() {
-//        return suffix;
-//    }
-//
-//    public void setSuffix(String suffix) {
-//        this.suffix = suffix;
-//    }
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
 }

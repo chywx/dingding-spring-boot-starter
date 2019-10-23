@@ -1,35 +1,47 @@
 package cn.chendahai.dingding.utils;
 
-import com.dingtalk.api.DefaultDingTalkClient;
-import com.dingtalk.api.DingTalkClient;
-import com.dingtalk.api.request.OapiRobotSendRequest;
-import com.taobao.api.ApiException;
+import com.alibaba.fastjson.JSONObject;
 
+import java.io.IOException;
 import java.util.Arrays;
+import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.CloseableHttpClient;
+import org.apache.http.impl.client.HttpClientBuilder;
 
 public class DingDingSendMsg {
 
-//    钉钉报警的url
     public static final String DD_URL = "https://oapi.dingtalk.com/robot/send?access_token=";
 
-    public static void sendText(String msg,String token,String phone) {
-        OapiRobotSendRequest request = getRequest(msg, phone);
+    public static CloseableHttpClient client = HttpClientBuilder.create().build();
+
+    public static int sendText(String content, String token, String phone, boolean isAll) {
+        String url = DD_URL + token;
+        HttpPost httpPost = new HttpPost(url);
+        httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
+
+        JSONObject bodys = new JSONObject();
+        bodys.put("msgtype", "text");
+
+        JSONObject text = new JSONObject();
+        text.put("content", content);
+        bodys.put("text", SystemMsg.getHostAddress() + "\n" + text);
+
+        AtMobiles atMobiles = new AtMobiles();
+        atMobiles.setAtMobiles(Arrays.asList(phone.split(",")));
+        atMobiles.setIsAtAll(isAll);
+        bodys.put("at", atMobiles);
+
+//        {"at":{"atMobiles":["13121939122"],"isAtAll":true},"text":{"content":"haha"},"msgtype":"text"}
+        StringEntity se = new StringEntity(bodys.toJSONString(), "utf-8");
+        httpPost.setEntity(se);
+        CloseableHttpResponse execute = null;
         try {
-            new DefaultDingTalkClient(DD_URL+token).execute(request);
-        } catch (ApiException e) {
+            execute = client.execute(httpPost);
+        } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    public static OapiRobotSendRequest getRequest(String msg, String phone){
-        OapiRobotSendRequest request = new OapiRobotSendRequest();
-        request.setMsgtype("text");
-        OapiRobotSendRequest.Text text = new OapiRobotSendRequest.Text();
-        text.setContent(SystemMsg.getHostAddress()+"\n"+msg);
-        request.setText(text);
-        OapiRobotSendRequest.At at = new OapiRobotSendRequest.At();
-        at.setAtMobiles(Arrays.asList(phone));
-        request.setAt(at);
-        return request;
+        return execute.getStatusLine().getStatusCode();
     }
 }

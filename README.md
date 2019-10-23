@@ -8,7 +8,7 @@
 <dependency>
     <groupId>cn.chendahai</groupId>
     <artifactId>dingding-spring-boot-starter</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.3</version>
 </dependency>
 ```
 
@@ -18,7 +18,7 @@ dingding:
   service:
 # 开启钉钉支持
     enable: true
-# 钉钉token值
+# 钉钉token值，可选
     token: dingdingtoken
 ```
 
