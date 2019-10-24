@@ -1,5 +1,7 @@
 # dingding-spring-boot-starter
-钉钉报警starter
+> 钉钉报警starter
+>
+> 引入后`@Autowired`注入即可使用
 
 # 使用方式
 
@@ -20,6 +22,8 @@ dingding:
     enable: true
 # 钉钉token值，可选
     token: dingdingtoken
+# 发送的用户手机号，多个用逗号分隔
+    phone: 13121939122,18135953996
 ```
 
 ### 3. @Autowired注入使用

@@ -1,7 +1,6 @@
 package cn.chendahai.dingding.utils;
 
 import com.alibaba.fastjson.JSONObject;
-
 import java.io.IOException;
 import java.util.Arrays;
 import org.apache.http.client.methods.CloseableHttpResponse;
@@ -25,8 +24,8 @@ public class DingDingSendMsg {
         bodys.put("msgtype", "text");
 
         JSONObject text = new JSONObject();
-        text.put("content", content);
-        bodys.put("text", SystemMsg.getHostAddress() + "\n" + text);
+        text.put("content", SystemMsg.getHostAddress() + "\n" + content);
+        bodys.put("text", text);
 
         AtMobiles atMobiles = new AtMobiles();
         atMobiles.setAtMobiles(Arrays.asList(phone.split(",")));
@@ -34,6 +33,7 @@ public class DingDingSendMsg {
         bodys.put("at", atMobiles);
 
 //        {"at":{"atMobiles":["13121939122"],"isAtAll":true},"text":{"content":"haha"},"msgtype":"text"}
+        System.out.println(bodys.toJSONString());
         StringEntity se = new StringEntity(bodys.toJSONString(), "utf-8");
         httpPost.setEntity(se);
         CloseableHttpResponse execute = null;
@@ -44,4 +44,5 @@ public class DingDingSendMsg {
         }
         return execute.getStatusLine().getStatusCode();
     }
+
 }
