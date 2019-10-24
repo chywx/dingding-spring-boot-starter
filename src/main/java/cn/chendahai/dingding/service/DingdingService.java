@@ -2,6 +2,9 @@ package cn.chendahai.dingding.service;
 
 import cn.chendahai.dingding.utils.DingDingSendMsg;
 
+/**
+ * @author chy
+ */
 public class DingdingService {
 
     private String token;

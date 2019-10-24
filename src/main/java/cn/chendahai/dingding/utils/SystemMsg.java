@@ -4,6 +4,7 @@ import java.net.InetAddress;
 import java.net.UnknownHostException;
 
 public class SystemMsg {
+
     public static String getHostAddress() {
         String address = "";
         try {
