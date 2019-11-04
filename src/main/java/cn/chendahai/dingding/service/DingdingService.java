@@ -1,6 +1,7 @@
 package cn.chendahai.dingding.service;
 
 import cn.chendahai.dingding.utils.DingDingSendMsg;
+import java.util.Map;
 
 /**
  * @author chy
@@ -16,27 +17,27 @@ public class DingdingService {
         this.phone = phone;
     }
 
-    public int send(String content) {
+    public Map<String, Object> send(String content) {
         return DingDingSendMsg.sendText(content, token, phone, false);
     }
 
-    public int sendByPhone(String content, String phone) {
+    public Map<String, Object> sendByPhone(String content, String phone) {
         return DingDingSendMsg.sendText(content, token, phone, false);
     }
 
-    public int sendByToken(String content, String token) {
+    public Map<String, Object> sendByToken(String content, String token) {
         return DingDingSendMsg.sendText(content, token, phone, false);
     }
 
-    public int sendByTokenAndPhone(String content, String token, String phone) {
+    public Map<String, Object> sendByTokenAndPhone(String content, String token, String phone) {
         return DingDingSendMsg.sendText(content, token, phone, false);
     }
 
-    public int sendAll(String content) {
+    public Map<String, Object> sendAll(String content) {
         return DingDingSendMsg.sendText(content, token, phone, true);
     }
 
-    public int sendAllByToken(String content, String token) {
+    public Map<String, Object> sendAllByToken(String content, String token) {
         return DingDingSendMsg.sendText(content, token, phone, true);
     }
 

@@ -3,11 +3,14 @@ package cn.chendahai.dingding.utils;
 import com.alibaba.fastjson.JSONObject;
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.StringEntity;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
+import org.springframework.util.StringUtils;
 
 public class DingDingSendMsg {
 
@@ -15,7 +18,7 @@ public class DingDingSendMsg {
 
     public static CloseableHttpClient client = HttpClientBuilder.create().build();
 
-    public static int sendText(String content, String token, String phone, boolean isAll) {
+    public static Map<String, Object> sendText(String content, String token, String phone, boolean isAll) {
         String url = DD_URL + token;
         HttpPost httpPost = new HttpPost(url);
         httpPost.addHeader("Content-Type", "application/json; charset=utf-8");
@@ -28,7 +31,9 @@ public class DingDingSendMsg {
         bodys.put("text", text);
 
         AtMobiles atMobiles = new AtMobiles();
-        atMobiles.setAtMobiles(Arrays.asList(phone.split(",")));
+        if (!StringUtils.isEmpty(phone)) {
+            atMobiles.setAtMobiles(Arrays.asList(phone.split(",")));
+        }
         atMobiles.setIsAtAll(isAll);
         bodys.put("at", atMobiles);
 
@@ -42,7 +47,17 @@ public class DingDingSendMsg {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return execute.getStatusLine().getStatusCode();
+        Map<String, Object> map = new HashMap<>();
+        int statusCode = execute.getStatusLine().getStatusCode();
+        map.put("code", statusCode);
+        if (statusCode == 200) {
+            map.put("msg", "send success");
+        } else if (statusCode == 302) {
+            map.put("msg", "Illegal token");
+        } else {
+            map.put("msg", "error");
+        }
+        return map;
     }
 
 }
