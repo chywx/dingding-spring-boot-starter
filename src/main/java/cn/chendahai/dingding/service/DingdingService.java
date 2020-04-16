@@ -4,7 +4,7 @@ import cn.chendahai.dingding.utils.DingDingSendMsg;
 import java.util.Map;
 
 /**
- * @author chy
+ * @author Dylan
  */
 public class DingdingService {
 
@@ -12,31 +12,68 @@ public class DingdingService {
 
     private String phone;
 
+    public DingdingService() {
+    }
+
     public DingdingService(String token, String phone) {
         this.token = token;
         this.phone = phone;
     }
 
+    /**
+     * @param content Content information sent
+     * @return
+     */
     public Map<String, Object> send(String content) {
         return DingDingSendMsg.sendText(content, token, phone, false);
     }
 
+    /**
+     *
+     * @param content Content information sent
+     * @param phone Mobile phone number, multiple separated by a comma
+     * @return
+     */
     public Map<String, Object> sendByPhone(String content, String phone) {
         return DingDingSendMsg.sendText(content, token, phone, false);
     }
 
+    /**
+     *
+     * @param content Content information sent
+     * @param token dingding token
+     * @return
+     */
     public Map<String, Object> sendByToken(String content, String token) {
         return DingDingSendMsg.sendText(content, token, phone, false);
     }
 
+    /**
+     *
+     * @param content Content information sent
+     * @param token dingding token
+     * @param phone Mobile phone number, multiple separated by a comma
+     * @return
+     */
     public Map<String, Object> sendByTokenAndPhone(String content, String token, String phone) {
         return DingDingSendMsg.sendText(content, token, phone, false);
     }
 
+    /**
+     *
+     * @param content Content information sent
+     * @return
+     */
     public Map<String, Object> sendAll(String content) {
         return DingDingSendMsg.sendText(content, token, phone, true);
     }
 
+    /**
+     *
+     * @param content Content information sent
+     * @param token dingding token
+     * @return
+     */
     public Map<String, Object> sendAllByToken(String content, String token) {
         return DingDingSendMsg.sendText(content, token, phone, true);
     }
