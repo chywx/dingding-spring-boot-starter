@@ -16,8 +16,6 @@ public class DingDingSendMsg {
 
     public static final String DD_URL = "https://oapi.dingtalk.com/robot/send?access_token=";
 
-    public static CloseableHttpClient client = HttpClientBuilder.create().build();
-
     public static Map<String, Object> sendText(String content, String token, String phone, boolean isAll) {
         String url = DD_URL + token;
         HttpPost httpPost = new HttpPost(url);
@@ -43,6 +41,7 @@ public class DingDingSendMsg {
         httpPost.setEntity(se);
         CloseableHttpResponse execute = null;
         try {
+            CloseableHttpClient client = HttpClientBuilder.create().build();
             execute = client.execute(httpPost);
         } catch (IOException e) {
             e.printStackTrace();
