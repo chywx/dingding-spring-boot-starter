@@ -12,7 +12,7 @@
 <dependency>
     <groupId>cn.chendahai</groupId>
     <artifactId>dingding-spring-boot-starter</artifactId>
-    <version>2.0.2</version>
+    <version>2.0.3</version>
 </dependency>
 ```
 
@@ -65,7 +65,7 @@ sendByTokenAndPhone(String content, String token, String phone)
 <dependency>
     <groupId>cn.chendahai</groupId>
     <artifactId>dingding-spring-boot-starter</artifactId>
-    <version>2.0.2</version>
+    <version>2.0.3</version>
 </dependency>
 ```
 
