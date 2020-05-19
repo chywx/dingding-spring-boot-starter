@@ -7,6 +7,9 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+/**
+ * @author Dylan
+ */
 @Configuration
 @ConditionalOnClass(DingdingService.class)
 @EnableConfigurationProperties(DingdingServiceProperties.class)
@@ -21,7 +24,7 @@ public class DingdingStarterEnableAutoConfiguration {
 
     @Bean
     @ConditionalOnProperty(prefix = "dingding.service", name = "enable", havingValue = "true")
-    DingdingService helloService() {
+    DingdingService dingdingService() {
         return new DingdingService(dingdingServiceProperties.getToken(), dingdingServiceProperties.getPhone());
     }
 
